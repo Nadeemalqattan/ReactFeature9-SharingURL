@@ -1,14 +1,30 @@
 // Styling
-import { ThemeButton } from "../styles";
+import { ThemeButton, Logo, NavProduct } from "../styles";
+
+import logo from "./images/dark-logo.png";
 
 const NavBar = (props) => {
   return (
     <nav className="navbar navbar-expand">
-      <h4 className="navbar-brand">add your logo</h4>
+      <NavProduct className="navbar-brand" to="/">
+        <Logo src={logo} alt="logo" />
+      </NavProduct>
       <div className="navbar-nav ml-auto">
-        <a className="nav-item" style={{ padding: "0.25em 1em" }}>
+        <NavProduct
+          to="/"
+          className="nav-item"
+          style={{ padding: "0.25em 1em" }}
+        >
+          Home
+        </NavProduct>
+        <NavProduct
+          to="/products"
+          className="nav-item"
+          style={{ padding: "0.25em 1em" }}
+        >
           Products
-        </a>
+        </NavProduct>
+
         <ThemeButton className="nav-item" onClick={props.toggleTheme}>
           {props.currentTheme === "light" ? "Dark" : "Light"} Mode
         </ThemeButton>
