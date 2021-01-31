@@ -2,9 +2,14 @@
 import DeleteButton from "./buttons/DeleteButton";
 // Styling
 import { DetailWrapper } from "../styles";
+import { useParams, Redirect } from "react-router-dom";
 
 const ProductDetail = (props) => {
-  const product = props.product;
+  const productSlug = useParams().productSlug;
+  const product = props.products.find(
+    (product) => product.Slug === productSlug
+  );
+  if (!product) return <Redirect to="/products" />;
 
   return (
     <DetailWrapper>

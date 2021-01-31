@@ -61,6 +61,13 @@ function App() {
         <Route exact path="/">
           <Home />
         </Route>
+        <Route path="/Products/:productSlug">
+          <ProductDetail
+            products={_products}
+            deleteProduct={deleteProduct}
+            selectProduct={selectProduct}
+          />
+        </Route>
         <Route path="/products">
           <ProductList
             products={_products}
@@ -72,11 +79,5 @@ function App() {
     </ThemeProvider>
   );
 }
-// <Route>
-// <ProductDetail
-//   product={product}
-//   deleteProduct={deleteProduct}
-//   selectProduct={selectProduct}
-// />
-// </Route>
+
 export default App;
