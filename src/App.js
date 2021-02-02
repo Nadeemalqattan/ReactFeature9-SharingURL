@@ -1,11 +1,5 @@
 // Styling
-import {
-  Description,
-  GlobalStyle,
-  ShopImage,
-  ThemeButton,
-  Title,
-} from "./styles";
+import { GlobalStyle } from "./styles";
 import React, { useState } from "react";
 
 import Home from "./components/Home";
@@ -35,20 +29,6 @@ const theme = {
 
 function App() {
   const [currentTheme, setCurrentTheme] = useState("light");
-  const [_products, setProducts] = useState(products);
-
-  const deleteProduct = (productId) => {
-    const updatedProducts = _products.filter(
-      (product) => product.id !== +productId
-    );
-    setProducts(updatedProducts);
-  };
-
-  const selectProduct = (productId) => {
-    const selectedProduct = products.find(
-      (product) => product.id === productId
-    );
-  };
 
   const toggleTheme = () =>
     setCurrentTheme(currentTheme === "light" ? "dark" : "light");
@@ -62,18 +42,10 @@ function App() {
           <Home />
         </Route>
         <Route path="/Products/:productSlug">
-          <ProductDetail
-            products={_products}
-            deleteProduct={deleteProduct}
-            selectProduct={selectProduct}
-          />
+          <ProductDetail />
         </Route>
         <Route path="/products">
-          <ProductList
-            products={_products}
-            deleteProduct={deleteProduct}
-            selectProduct={selectProduct}
-          />
+          <ProductList />
         </Route>
       </Switch>
     </ThemeProvider>
