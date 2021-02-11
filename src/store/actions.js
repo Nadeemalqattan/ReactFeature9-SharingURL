@@ -1,14 +1,18 @@
-const DELETE_PRODUCT = "DELETE_PRODUCT";
-const CREATE_PRODUCT = "CREATE_PRODUCT";
+export const DELETE_PRODUCT = "DELETE_PRODUCT";
+export const CREATE_PRODUCT = "CREATE_PRODUCT";
+export const UPDATE_PRODUCT = "UPDATE_PRODUCT";
 
 export const createProduct = (newProduct) => {
-  console.log(
-    "🚀 ~ file: actions.js ~ line 6 ~ createProduct ~ newProduct",
-    newProduct
-  );
   return {
     type: CREATE_PRODUCT,
     payload: { newProduct },
+  };
+};
+
+export const updateProduct = (updatedProduct) => {
+  return {
+    type: UPDATE_PRODUCT,
+    payload: { updatedProduct },
   };
 };
 

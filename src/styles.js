@@ -100,3 +100,12 @@ export const CreateButtonStyled = styled.button`
     background-color: ${(props) => props.theme.backgroundColor};
   }
 `;
+
+export const UpdateButtonStyled = styled.button`
+  color: black;
+  background-color: ${(props) => props.theme.pink};
+  &:hover {
+    color: ${(props) => props.theme.pink};
+    background-color: maroon;
+  }
+`;

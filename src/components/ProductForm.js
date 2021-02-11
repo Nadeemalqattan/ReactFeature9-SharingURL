@@ -1,24 +1,32 @@
 import { useState } from "react";
-import { CreateButtonStyled } from "../styles";
-import { useDispatch } from "react-redux";
-import { createProduct } from "../store/actions";
-import { useHistory } from "react-router-dom";
-import { ListWrapper } from "../styles";
+import { CreateButtonStyled, ListWrapper } from "../styles";
+import { useDispatch, useSelector } from "react-redux";
+import { createProduct, updateProduct } from "../store/actions";
+import { useHistory, useParams } from "react-router-dom";
 
 const ProductForm = () => {
-  const [product, setProduct] = useState({
-    name: "",
-    price: 0,
-    description: "",
-    image: "",
-  });
+  const dispatch = useDispatch();
 
   const history = useHistory();
 
-  const dispatch = useDispatch();
+  const { productSlug } = useParams();
+  const _product = useSelector((state) => state.products).find(
+    (product) => product.Slug === productSlug
+  );
+
+  const [product, setProduct] = useState(
+    _product ?? {
+      name: "",
+      price: 0,
+      description: "",
+      image: "",
+    }
+  );
+
   const handleSubmit = (event) => {
     event.preventDefault();
-    dispatch(createProduct(product));
+    if (_product) dispatch(updateProduct(product));
+    else dispatch(createProduct(product));
     history.push("/products");
   };
   const handleChange = (event) => {
@@ -27,14 +35,15 @@ const ProductForm = () => {
 
   return (
     <ListWrapper>
+      <h1 className="text-center">{_product ? "Update" : "Create"} Cookie</h1>
       <form onSubmit={handleSubmit}>
         <div className="form-group row">
           <div className="col-6">
             <label>Name</label>
             <input
-              value={product.name}
               name="name"
               type="text"
+              value={product.name}
               className="form-control"
               onChange={handleChange}
             />
@@ -42,10 +51,10 @@ const ProductForm = () => {
           <div className="col-6">
             <label>Price</label>
             <input
-              value={product.price}
               name="price"
               type="number"
               min="1"
+              value={product.price}
               className="form-control"
               onChange={handleChange}
             />
@@ -54,9 +63,9 @@ const ProductForm = () => {
         <div className="form-group">
           <label>Description</label>
           <input
-            value={product.description}
             name="description"
             type="text"
+            value={product.description}
             className="form-control"
             onChange={handleChange}
           />
@@ -64,15 +73,15 @@ const ProductForm = () => {
         <div className="form-group">
           <label>Image</label>
           <input
-            value={product.image}
             name="image"
             type="text"
+            value={product.image}
             className="form-control"
             onChange={handleChange}
           />
         </div>
         <CreateButtonStyled className="btn float-right">
-          Create
+          {_product ? "Update" : "Create"}
         </CreateButtonStyled>
       </form>
     </ListWrapper>

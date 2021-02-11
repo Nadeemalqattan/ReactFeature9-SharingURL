@@ -28,6 +28,12 @@ const theme = {
 };
 
 function App() {
+  const fetchProducts = () => {
+    console.log("Let's fetch some cookies");
+  };
+
+  fetchProducts();
+
   const [currentTheme, setCurrentTheme] = useState("light");
 
   const toggleTheme = () =>
@@ -38,10 +44,7 @@ function App() {
       <GlobalStyle />
       <NavBar currentTheme={currentTheme} toggleTheme={toggleTheme} />
       <Switch>
-        <Route exact path="/">
-          <Home />
-        </Route>
-        <Route path="/products/new">
+        <Route path={["/products/new", "/products/:productSlug/edit"]}>
           <ProductForm />
         </Route>
         <Route path="/Products/:productSlug">
@@ -49,6 +52,9 @@ function App() {
         </Route>
         <Route path="/products">
           <ProductList />
+        </Route>
+        <Route exact path="/">
+          <Home />
         </Route>
       </Switch>
     </ThemeProvider>
