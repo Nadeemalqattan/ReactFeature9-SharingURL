@@ -28,12 +28,6 @@ const theme = {
 };
 
 function App() {
-  const fetchProducts = () => {
-    console.log("Let's fetch some cookies");
-  };
-
-  fetchProducts();
-
   const [currentTheme, setCurrentTheme] = useState("light");
 
   const toggleTheme = () =>

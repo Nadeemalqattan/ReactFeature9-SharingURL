@@ -1,12 +1,12 @@
-import BounceLoader from "react-spinners/BounceLoader";
+import PacmanLoader from "react-spinners/PacmanLoader";
+import { Description } from "../styles";
 
 const Loading = () => {
   return (
     <>
-      <div>
-        <h3>Cookies being prepared...</h3>
-        <BounceLoader color="pink" size={50} />
-      </div>
+      <Description>
+        <PacmanLoader color="pink" size={40} />
+      </Description>
     </>
   );
 };

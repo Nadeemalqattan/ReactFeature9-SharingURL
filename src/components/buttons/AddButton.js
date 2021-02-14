@@ -5,7 +5,6 @@ const AddButton = () => {
   return (
     <Link to="/products/new">
       <button>
-        <BsPlus className="float-right" size="2em" />
         <BsPlusCircle className="float-right" size="2em" />
       </button>
     </Link>

@@ -7,11 +7,14 @@ import { useState } from "react";
 import { useSelector } from "react-redux";
 import { BsPlusCircle } from "react-icons/bs";
 import { Link } from "react-router-dom";
+import Loading from "../components/Loading";
 
 const ProductList = () => {
+  const [query, setQuery] = useState("");
   const products = useSelector((state) => state.products);
 
-  const [query, setQuery] = useState("");
+  const loading = useSelector((state) => state.loading);
+  if (loading) return <Loading />;
 
   const productList = products
     .filter((product) =>

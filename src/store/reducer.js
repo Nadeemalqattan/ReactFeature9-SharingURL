@@ -1,13 +1,25 @@
-import productData from "../products";
 import slugify from "react-slugify";
-import { CREATE_PRODUCT, DELETE_PRODUCT, UPDATE_PRODUCT } from "./actions";
+import {
+  CREATE_PRODUCT,
+  DELETE_PRODUCT,
+  FETCH_PRODUCTS,
+  UPDATE_PRODUCT,
+} from "./actions";
 
 const initialState = {
-  products: productData,
+  products: [],
+  loading: true,
 };
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
+    case FETCH_PRODUCTS:
+      return {
+        ...state,
+        products: action.payload,
+        loading: false,
+      };
+
     case CREATE_PRODUCT:
       const { newProduct } = action.payload;
       newProduct.id = state.products[state.products.length - 1].id + 1;
