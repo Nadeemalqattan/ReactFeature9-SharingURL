@@ -11,7 +11,7 @@ const ProductForm = () => {
 
   const { productSlug } = useParams();
   const _product = useSelector((state) => state.products).find(
-    (product) => product.Slug === productSlug
+    (product) => product.slug === productSlug
   );
 
   const [product, setProduct] = useState(

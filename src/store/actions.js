@@ -25,10 +25,13 @@ export const fetchProducts = () => {
 export const createProduct = (newProduct) => {
   return async (dispatch) => {
     try {
-      await axios.post(`http://localhost:8000/products/`, newProduct);
+      const response = await axios.post(
+        `http://localhost:8000/products/`,
+        newProduct
+      );
       dispatch({
         type: CREATE_PRODUCT,
-        payload: { newProduct: newProduct },
+        payload: { newProduct: response.data },
       });
     } catch (error) {
       console.log("🚀 ~ file: actions.js ~ line 47 ~ return ~ error", error);
