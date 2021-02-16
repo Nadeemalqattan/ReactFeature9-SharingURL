@@ -33,6 +33,9 @@ const ProductForm = () => {
     setProduct({ ...product, [event.target.name]: event.target.value });
   };
 
+  const handleImage = (event) =>
+    setProduct({ ...product, image: event.target.files[0] });
+
   return (
     <ListWrapper>
       <h1 className="text-center">{_product ? "Update" : "Create"} Cookie</h1>
@@ -74,10 +77,9 @@ const ProductForm = () => {
           <label>Image</label>
           <input
             name="image"
-            type="text"
-            value={product.image}
+            type="file"
             className="form-control"
-            onChange={handleChange}
+            onChange={handleImage}
           />
         </div>
         <CreateButtonStyled className="btn float-right">
